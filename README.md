@@ -1,4 +1,4 @@
-# 📊 Documentation Complète - Dashboard Agencies & Contacts
+# Dashboard Agencies & Contacts
 
 ---
 
