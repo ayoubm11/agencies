@@ -1,0 +1,28 @@
+graph TB
+    subgraph "Frontend - Next.js 16"
+        A[Page Login] --> B{Clerk Auth}
+        B -->|Non authentifié| A
+        B -->|Authentifié| C[Dashboard Layout]
+        C --> D[Page Agencies]
+        C --> E[Page Contacts]
+        E --> F{Vérifier Limite}
+        F -->|< 50 contacts/jour| G[Afficher Contacts]
+        F -->|>= 50 contacts/jour| H[Modal Upgrade]
+    end
+    
+    subgraph "Gestion des Données"
+        I[CSV Agencies] --> J[API Route /api/agencies]
+        K[CSV Contacts] --> L[API Route /api/contacts]
+        J --> D
+        L --> E
+        M[Storage Limite] --> F
+    end
+    
+    subgraph "Authentification"
+        N[Clerk Provider] --> B
+        O[Middleware Protection] --> C
+    end
+    
+    style B fill:#4F46E5
+    style F fill:#EF4444
+    style H fill:#F59E0B
